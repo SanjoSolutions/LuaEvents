@@ -3,16 +3,6 @@ Events = {}
 local frame = CreateFrame('Frame')
 local isUsed = false
 
-local function p(label, data)
-    if type(data) == 'table' then
-        print(label .. ':')
-        printTable(data)
-        print('---')
-    else
-        print(label .. ':', data)
-    end
-end
-
 function Events.waitForOneOfEventsAndCondition(eventsToWaitFor, condition, timeout)
     if isUsed then
         error('Events system is already used.')
@@ -20,8 +10,6 @@ function Events.waitForOneOfEventsAndCondition(eventsToWaitFor, condition, timeo
 
     isUsed = true
 
-    print('Events.waitForOneOfEventsAndCondition')
-    p('eventsToWaitFor', eventsToWaitFor)
     local thread = coroutine.running()
 
     local timer = nil
@@ -36,12 +24,10 @@ function Events.waitForOneOfEventsAndCondition(eventsToWaitFor, condition, timeo
 
         isUsed = false
 
-        coroutine.resume(thread, wasSuccessful, event, ...)
+        resumeWithShowingError(thread, wasSuccessful, event, ...)
     end
 
     frame:SetScript('OnEvent', function(self, event, ...)
-        print('BBB', event)
-
         if condition(self, event, ...) then
             finish(true, event, ...)
         end

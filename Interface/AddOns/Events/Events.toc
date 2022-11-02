@@ -1,4 +1,4 @@
 ## Title: Events
-## Dependencies: Function, Set
+## Dependencies: Function, Set, Coroutine
 
 Events.lua
