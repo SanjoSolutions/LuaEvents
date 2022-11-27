@@ -13,7 +13,7 @@ local function finish(entry, wasSuccessful, event, ...)
     frame:SetScript('OnEvent', nil)
   end
 
-  resumeWithShowingError(entry.thread, wasSuccessful, event, ...)
+  Coroutine.resumeWithShowingError(entry.thread, wasSuccessful, event, ...)
 end
 
 function _.cleanUpEntry(entry)
