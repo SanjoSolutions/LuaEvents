@@ -7,13 +7,17 @@ local entries = {}
 local registeredEvents = {}
 
 local function finish(entry, wasSuccessful, event, ...)
+  _.removeEntry(entry)
+
+  Coroutine.resumeWithShowingError(entry.thread, wasSuccessful, event, ...)
+end
+
+function _.removeEntry(entry)
   _.cleanUpEntry(entry)
 
   if Object.isEmpty(registeredEvents) then
     frame:SetScript('OnEvent', nil)
   end
-
-  Coroutine.resumeWithShowingError(entry.thread, wasSuccessful, event, ...)
 end
 
 function _.cleanUpEntry(entry)
@@ -30,8 +34,8 @@ function _.cancelTimerOfEntry(entry)
 end
 
 function _.removeRegisteredEventsOfEntry(entry)
-  for _, event in ipairs(entry.eventsToWaitFor) do
-    Set.remove(registeredEvents, event)
+  for event in Set.iterator(entry.eventsToWaitFor or entry.eventsToListenTo) do
+    Set.remove(registeredEvents[event], entry)
   end
 end
 
@@ -44,15 +48,37 @@ function _.cleanUpRegisteredEvents()
   end
 end
 
+function Events.listenForEvent(event, callback)
+  local entry = {
+    eventsToListenTo = Set.create({ event }),
+    callback = callback,
+    thread = coroutine.running()
+  }
+
+  _.addEntry(entry)
+
+  return {
+    stopListening = function ()
+      _.removeEntry(entry)
+    end
+  }
+end
+
 function Events.waitForOneOfEventsAndCondition(eventsToWaitFor, condition, timeout)
   local entry = {
-    eventsToWaitFor = eventsToWaitFor,
+    eventsToWaitFor = Set.create(eventsToWaitFor),
     condition = condition,
     timeout = timeout,
     timer = nil,
     thread = coroutine.running()
   }
 
+  _.addEntry(entry)
+
+  return coroutine.yield()
+end
+
+function _.addEntry(entry)
   table.insert(entries, entry)
 
   if not frame then
@@ -62,14 +88,20 @@ function Events.waitForOneOfEventsAndCondition(eventsToWaitFor, condition, timeo
   if not frame:GetScript('OnEvent') then
     frame:SetScript('OnEvent', function(self, event, ...)
       for _, entry in ipairs(entries) do
-        if entry.condition(self, event, ...) then
-          finish(entry, true, event, ...)
+        if entry.eventsToWaitFor then
+          if Set.contains(entry.eventsToWaitFor, event) and entry.condition and entry.condition(self, event, ...) then
+            finish(entry, true, event, ...)
+          end
+        elseif entry.eventsToListenTo then
+          if Set.contains(entry.eventsToListenTo, event) then
+            entry.callback(event, ...)
+          end
         end
       end
     end)
   end
 
-  for _, event in ipairs(eventsToWaitFor) do
+  for event in Set.iterator(entry.eventsToWaitFor or entry.eventsToListenTo) do
     frame:RegisterEvent(event)
     if not registeredEvents[event] then
       registeredEvents[event] = Set.create()
@@ -77,13 +109,11 @@ function Events.waitForOneOfEventsAndCondition(eventsToWaitFor, condition, timeo
     Set.add(registeredEvents[event], entry)
   end
 
-  if timeout then
-    entry.timer = C_Timer.NewTimer(timeout, function()
+  if entry.timeout then
+    entry.timer = C_Timer.NewTimer(entry.timeout, function()
       finish(entry, false)
     end)
   end
-
-  return coroutine.yield()
 end
 
 function Events.waitForOneOfEvents(eventsToWaitFor, timeout)
