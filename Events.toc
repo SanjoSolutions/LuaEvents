@@ -1,7 +1,5 @@
 ## Title: Events
 ## Interface: 100002
 ## Dependencies: Function, Set, Coroutine
-## Version: 1.0.0
 
-libs/Library/Library.lua
 Events.lua
