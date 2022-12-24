@@ -89,7 +89,7 @@ function _.addEntry(entry)
     frame:SetScript('OnEvent', function(self, event, ...)
       for _, entry in ipairs(entries) do
         if entry.eventsToWaitFor then
-          if Set.contains(entry.eventsToWaitFor, event) and entry.condition and entry.condition(self, event, ...) then
+          if Set.contains(entry.eventsToWaitFor, event) and entry.condition(self, event, ...) then
             finish(entry, true, event, ...)
           end
         elseif entry.eventsToListenTo then
