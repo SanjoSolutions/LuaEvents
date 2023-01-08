@@ -90,7 +90,18 @@ function _.addEntry(entry)
       for _, entry in ipairs(entries) do
         if entry.eventsToWaitFor then
           if Set.contains(entry.eventsToWaitFor, event) and entry.condition(self, event, ...) then
-            finish(entry, true, event, ...)
+            if entry.duration then
+              if entry.timer2 then
+                entry.timer2:Cancel()
+                entry.timer2 = nil
+              end
+              local args = { ... }
+              entry.timer2 = C_Timer.NewTimer(entry.duration, function ()
+                finish(entry, true, event, unpack(args))
+              end)
+            else
+              finish(entry, true, event, ...)
+            end
           end
         elseif entry.eventsToListenTo then
           if Set.contains(entry.eventsToListenTo, event) then
@@ -126,4 +137,20 @@ end
 
 function Events.waitForEvent(eventToWaitFor, timeout)
   return Events.waitForEventCondition(eventToWaitFor, Function.alwaysTrue, timeout)
+end
+
+function Events.waitForEvent2(eventToWaitFor, duration, timeout)
+  local entry = {
+    eventsToWaitFor = Set.create({ eventToWaitFor }),
+    condition = Function.alwaysTrue,
+    timeout = timeout,
+    timer = nil,
+    thread = coroutine.running(),
+    duration = duration,
+    timer2 = nil
+  }
+
+  _.addEntry(entry)
+
+  return coroutine.yield()
 end
