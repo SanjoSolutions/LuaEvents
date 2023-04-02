@@ -1,5 +1,5 @@
 ## Title: Events
-## Interface: 100005
+## Interface: 100007
 ## Dependencies: Function, Set, Coroutine
 
 Events.lua
