@@ -1,5 +1,6 @@
 ## Title: Events
 ## Interface: 30400
 ## Dependencies: Function, Set, Coroutine
+## Version: 1.0.0
 
 Events.lua
