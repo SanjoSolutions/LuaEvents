@@ -1,6 +1,6 @@
 ## Title: Events
 ## Interface: 100007
-## Dependencies: Function, Set, Coroutine
 ## Version: 1.0.0
+## Dependencies: Library, Function, Set, Coroutine
 
-Events.lua
+Events.xml

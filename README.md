@@ -15,4 +15,10 @@ With the provided functions, sequential code can be written for processes which 
 * **Events.waitForEventCondition**: a function to wait for an event of a specific type and a condition met. A timeout can be optionally passed.
 * **Events.waitForEvent**: a function to wait for an event. A timeout can be optionally passed.
 
+## How to use
+
+Please see "[How to use Library](https://github.com/SanjoSolutions/LuaLibrary#how-to-use)" for how to use this library.
+
+## Support
+
 You can support me on [Patreon](https://www.patreon.com/addons_by_sanjo).
