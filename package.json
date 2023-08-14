@@ -1,11 +1,11 @@
 {
-  "name": "Events",
+  "name": "@sanjo-addons/events",
   "dependencies": {
-    "Library": "SanjoSolutions/LuaLibrary#v0.4.0",
-    "Function": "SanjoSolutions/LuaFunction#v2.0.0",
-    "Set": "SanjoSolutions/LuaSet#v2.0.0",
-    "Coroutine": "SanjoSolutions/LuaCoroutine#v2.0.0",
-    "Array": "SanjoSolutions/LuaArray#v2.0.0",
-    "Object": "SanjoSolutions/LuaObject#v2.0.0"
+    "@sanjo-addons/library": "SanjoSolutions/LuaLibrary#v0.4.0",
+    "@sanjo-addons/function": "SanjoSolutions/LuaFunction#v2.0.0",
+    "@sanjo-addons/set": "SanjoSolutions/LuaSet#v2.0.0",
+    "@sanjo-addons/coroutine": "SanjoSolutions/LuaCoroutine#v2.0.0",
+    "@sanjo-addons/array": "SanjoSolutions/LuaArray#v2.0.0",
+    "@sanjo-addons/object": "SanjoSolutions/LuaObject#v2.0.0"
   }
 }

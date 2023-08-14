@@ -4,9 +4,9 @@ local version = '2.0.0'
 if _G.Library then
   if not Library.isRegistered(addOnName, version) then
     local Function = Library.retrieve('Function', '^2.0.0')
-    local Set = Library.retrieve('Set', '^2.0.0')
+    local Set = Library.retrieve('Set', '^1.1.0')
     local Coroutine = Library.retrieve('Coroutine', '^2.0.0')
-    local Object = Library.retrieve('Object', '^2.0.0')
+    local Object = Library.retrieve('Object', '^1.1.0')
     local Array = Library.retrieve('Array', '^2.0.0')
 
     --- @class Events
@@ -170,5 +170,5 @@ if _G.Library then
     Library.register(addOnName, version, Events)
   end
 else
-  error(addOnName + ' requires Library. It seems absent.')
+  error(addOnName .. ' requires Library. It seems absent.')
 end
