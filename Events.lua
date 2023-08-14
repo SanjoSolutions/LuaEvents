@@ -5,6 +5,8 @@ if _G.Library and not Library.isRegistered(addOnName, version) then
   local Function = Library.retrieve('Function', '^1.0.0')
   local Set = Library.retrieve('Set', '^1.0.0')
   local Coroutine = Library.retrieve('Coroutine', '^1.0.0')
+  local Object = Library.retrieve('Object', '^1.0.0')
+  local Array = Library.retrieve('Array', '^1.0.0')
 
   --- @class Events
   local Events = {}

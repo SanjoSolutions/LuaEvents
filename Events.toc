@@ -1,6 +1,6 @@
 ## Title: Events
 ## Interface: 100007
 ## Version: 1.0.0
-## Dependencies: Library, Function, Set, Coroutine
+## Dependencies: Library, Function, Set, Coroutine, Object
 
 Events.xml
