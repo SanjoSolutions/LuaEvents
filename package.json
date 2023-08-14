@@ -2,10 +2,10 @@
   "name": "Events",
   "dependencies": {
     "Library": "SanjoSolutions/LuaLibrary#v0.4.0",
-    "Function": "SanjoSolutions/LuaFunction#v1.1.0",
-    "Set": "SanjoSolutions/LuaSet#v1.1.0",
-    "Coroutine": "SanjoSolutions/LuaCoroutine#v1.1.0",
-    "Array": "SanjoSolutions/LuaArray#v1.1.0",
-    "Object": "SanjoSolutions/LuaObject#v1.1.0"
+    "Function": "SanjoSolutions/LuaFunction#v1.0.0",
+    "Set": "SanjoSolutions/LuaSet#v1.0.0",
+    "Coroutine": "SanjoSolutions/LuaCoroutine#v1.0.0",
+    "Array": "SanjoSolutions/LuaArray#v1.0.0",
+    "Object": "SanjoSolutions/LuaObject#v1.0.0"
   }
 }
