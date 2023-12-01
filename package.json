@@ -1,13 +1,14 @@
 {
   "name": "@sanjo-addons/events",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "dependencies": {
-    "@sanjo-addons/library": "^0.5.0",
-    "@sanjo-addons/function": "^2.0.0",
-    "@sanjo-addons/set": "^1.1.0",
-    "@sanjo-addons/coroutine": "^2.0.0",
     "@sanjo-addons/array": "^2.0.1",
-    "@sanjo-addons/object": "^1.1.0"
+    "@sanjo-addons/boolean": "^2.0.0",
+    "@sanjo-addons/coroutine": "^2.0.0",
+    "@sanjo-addons/function": "^2.0.0",
+    "@sanjo-addons/library": "^0.5.0",
+    "@sanjo-addons/object": "^1.1.0",
+    "@sanjo-addons/set": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"
