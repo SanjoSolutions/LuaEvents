@@ -1,6 +1,5 @@
 ## Title: Events
 ## Interface: 11403
-## Version: 1.0.0
-## Dependencies: Library, Function, Set, Coroutine
+## Version: 2.1.0
 
 Events.xml
