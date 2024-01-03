@@ -1,6 +1,6 @@
 {
   "name": "@sanjo-addons/events",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "dependencies": {
     "@sanjo-addons/array": "^2.0.1",
     "@sanjo-addons/boolean": "^2.0.0",

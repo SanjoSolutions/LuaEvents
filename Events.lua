@@ -1,5 +1,5 @@
 local addOnName = "Events"
-local version = "2.1.0"
+local version = "2.2.0"
 
 if _G.Library then
   if not Library.isRegistered(addOnName, version) then
@@ -65,7 +65,7 @@ if _G.Library then
 
     function _.removeEntry(entry)
       _.cleanUpEntry(entry)
-      Array.removeFirstOccurence(entries, entry)
+      Array.removeFirstOccurrence(entries, entry)
     end
 
     function _.cleanUpEntry(entry)
@@ -122,9 +122,14 @@ if _G.Library then
 
       _.addEntry(entry)
 
+      local hasStoppedListening = false
+
       return {
         stopListening = function()
-          _.removeEntry(entry)
+          if not hasStoppedListening then
+            _.removeEntry(entry)
+            hasStoppedListening = true
+          end
         end,
       }
     end
